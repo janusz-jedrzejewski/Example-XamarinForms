@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:ContentPageXaml xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:views="clr-namespace:PhoneBook.Views;assembly=PhoneBook"
+                 mc:Ignorable="d"
+                 x:Class="PhoneBook.Views.UserContactDetailPage"
+                 Title="{Binding Title}">
+
+    <StackLayout Spacing="20" Padding="15">
+        <Label Text="Imię i nazwisko:" FontSize="Medium" />
+        <Entry Text="{Binding Contact.Name}" FontSize="Small" />
+        <Label Text="Nr telefonu:" FontSize="Medium" />
+        <Entry Text="{Binding Contact.TelephoneNumber}" Keyboard="Telephone" FontSize="Small"/>
+        <Button Text="Zapisz" Command="{Binding SaveCommand}"/>
+    </StackLayout>
+
+</views:ContentPageXaml>

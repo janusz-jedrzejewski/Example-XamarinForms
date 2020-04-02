@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:ContentPageXaml xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:views="clr-namespace:PhoneBook.Views;assembly=PhoneBook"
+                 mc:Ignorable="d"
+                 x:Class="PhoneBook.Views.PhoneBookPage"
+                 Title="Książka telefoniczna"
+                 x:Name="contentPage">
+    <views:ContentPageXaml.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddTapCommand}" />
+    </views:ContentPageXaml.ToolbarItems>
+    <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadItemsCommand}">
+        <ListView ItemsSource="{Binding Contacts}" SelectedItem="{Binding SelectedContact, Mode=TwoWay}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+                  HasUnevenRows="True"
+                  RowHeight="60"
+                  SeparatorColor="#ededed">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Edit" Command="{Binding Source={x:Reference contentPage}, Path=BindingContext.EditItemCommand}" CommandParameter="{Binding .}"/>
+                            <MenuItem Text="Delete" IsDestructive="True" Command="{Binding Source={x:Reference contentPage}, Path=BindingContext.DeleteItemCommand}" CommandParameter="{Binding .}"/>
+                        </ViewCell.ContextActions>
+                        <StackLayout Padding="10">
+                            <Label Text="{Binding Name}" 
+                                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1.0}"
+                                       RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5}"
+                                       FontSize="Medium"
+                                       XAlign="Start"
+                                       YAlign="End"
+                                       LineBreakMode="TailTruncation" />
+                            <Label Text="{Binding TelephoneNumber}" 
+                                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5}"
+                                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1.0}"
+                                       RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.5}"
+                                       FontSize="Small"
+                                       XAlign="Start"
+                                       YAlign="Start"
+                                       LineBreakMode="TailTruncation" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </RefreshView>
+</views:ContentPageXaml>
