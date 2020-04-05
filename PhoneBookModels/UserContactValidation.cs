@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using PhoneBook.Common.Resources;
 
 namespace PhoneBookModels
 {
@@ -6,8 +7,8 @@ namespace PhoneBookModels
     {
         public UserContactValidation()
         {
-            RuleFor(x => x.Name).NotEmpty().WithMessage("Należy wpisać imię i nazwisko");
-            RuleFor(x => x.TelephoneNumber).NotEmpty().WithMessage("Należy wpisać nr telefonu");
+            RuleFor(x => x.Name).NotEmpty().WithMessage(CaptionResources.EnterNmeAndLastName);
+            RuleFor(x => x.TelephoneNumber).NotEmpty().WithMessage(CaptionResources.EnterTelefoneNumber);
         }
     }
 }

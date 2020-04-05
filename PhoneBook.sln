@@ -7,13 +7,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneBook.Android", "PhoneB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneBook.iOS", "PhoneBook\PhoneBook.iOS\PhoneBook.iOS.csproj", "{2CCC11F0-95E4-472E-B6A5-C63F67D75AC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneBook", "PhoneBook\PhoneBook\PhoneBook.csproj", "{7DE6F197-1C4C-4FFC-B900-73216CD0A3BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneBook", "PhoneBook\PhoneBook\PhoneBook.csproj", "{7DE6F197-1C4C-4FFC-B900-73216CD0A3BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneBookDataService", "PhoneBookDataService\PhoneBookDataService.csproj", "{4A2B5913-1C1C-4AC0-B9AD-28AF20C8C653}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneBookDataService", "PhoneBookDataService\PhoneBookDataService.csproj", "{4A2B5913-1C1C-4AC0-B9AD-28AF20C8C653}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneBookInterfaces", "PhoneBookInterfaces\PhoneBookInterfaces.csproj", "{DB9F605A-930D-4156-A19E-B5BABCEEB5B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneBookInterfaces", "PhoneBookInterfaces\PhoneBookInterfaces.csproj", "{DB9F605A-930D-4156-A19E-B5BABCEEB5B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneBookModels", "PhoneBookModels\PhoneBookModels.csproj", "{E9023A94-CDFA-4101-8AC4-3A7B00D9FA70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneBookModels", "PhoneBookModels\PhoneBookModels.csproj", "{E9023A94-CDFA-4101-8AC4-3A7B00D9FA70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneBook.Common", "PhoneBook.Common\PhoneBook.Common.csproj", "{ACED5427-74F5-4CDB-A1BC-2B385654ADC1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -115,6 +117,18 @@ Global
 		{E9023A94-CDFA-4101-8AC4-3A7B00D9FA70}.Release|iPhone.Build.0 = Release|Any CPU
 		{E9023A94-CDFA-4101-8AC4-3A7B00D9FA70}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{E9023A94-CDFA-4101-8AC4-3A7B00D9FA70}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{ACED5427-74F5-4CDB-A1BC-2B385654ADC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACED5427-74F5-4CDB-A1BC-2B385654ADC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACED5427-74F5-4CDB-A1BC-2B385654ADC1}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{ACED5427-74F5-4CDB-A1BC-2B385654ADC1}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{ACED5427-74F5-4CDB-A1BC-2B385654ADC1}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{ACED5427-74F5-4CDB-A1BC-2B385654ADC1}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{ACED5427-74F5-4CDB-A1BC-2B385654ADC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACED5427-74F5-4CDB-A1BC-2B385654ADC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACED5427-74F5-4CDB-A1BC-2B385654ADC1}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{ACED5427-74F5-4CDB-A1BC-2B385654ADC1}.Release|iPhone.Build.0 = Release|Any CPU
+		{ACED5427-74F5-4CDB-A1BC-2B385654ADC1}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{ACED5427-74F5-4CDB-A1BC-2B385654ADC1}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

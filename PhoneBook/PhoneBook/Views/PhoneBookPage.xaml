@@ -6,10 +6,10 @@
                  xmlns:views="clr-namespace:PhoneBook.Views;assembly=PhoneBook"
                  mc:Ignorable="d"
                  x:Class="PhoneBook.Views.PhoneBookPage"
-                 Title="Książka telefoniczna"
-                 x:Name="contentPage">
+                 x:Name="contentPage"
+                 xmlns:resources="clr-namespace:PhoneBook.Common.Resources;assembly=PhoneBook.Common">
     <views:ContentPageXaml.ToolbarItems>
-        <ToolbarItem Text="Add" Command="{Binding AddTapCommand}" />
+        <ToolbarItem Text="{x:Static resources:CaptionResources.Add}" Command="{Binding AddTapCommand}" />
     </views:ContentPageXaml.ToolbarItems>
     <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadItemsCommand}">
         <ListView ItemsSource="{Binding Contacts}" SelectedItem="{Binding SelectedContact, Mode=TwoWay}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
@@ -20,8 +20,8 @@
                 <DataTemplate>
                     <ViewCell>
                         <ViewCell.ContextActions>
-                            <MenuItem Text="Edit" Command="{Binding Source={x:Reference contentPage}, Path=BindingContext.EditItemCommand}" CommandParameter="{Binding .}"/>
-                            <MenuItem Text="Delete" IsDestructive="True" Command="{Binding Source={x:Reference contentPage}, Path=BindingContext.DeleteItemCommand}" CommandParameter="{Binding .}"/>
+                            <MenuItem Text="{x:Static resources:CaptionResources.Edit}" Command="{Binding Source={x:Reference contentPage}, Path=BindingContext.EditItemCommand}" CommandParameter="{Binding .}"/>
+                            <MenuItem Text="{x:Static resources:CaptionResources.Delete}" IsDestructive="True" Command="{Binding Source={x:Reference contentPage}, Path=BindingContext.DeleteItemCommand}" CommandParameter="{Binding .}"/>
                         </ViewCell.ContextActions>
                         <StackLayout Padding="10">
                             <Label Text="{Binding Name}" 

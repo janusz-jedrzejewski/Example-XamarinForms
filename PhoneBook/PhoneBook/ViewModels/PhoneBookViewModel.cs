@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Acr.UserDialogs;
+using PhoneBook.Common.Resources;
+using PhoneBook.Enums;
 using PhoneBook.Services;
 using PhoneBook.Views;
 using PhoneBookInterfaces;
 using PhoneBookModels;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace PhoneBook.ViewModels
@@ -32,7 +30,7 @@ namespace PhoneBook.ViewModels
                 if (_selectedContact == null)
                     return;
 
-                UsePhoneAsync(_selectedContact);
+                SelectedAsync(_selectedContact);
                 SelectedContact = null;
                 RaisePropertyChanged(() => SelectedContact);
             }
@@ -40,13 +38,9 @@ namespace PhoneBook.ViewModels
 
         public ObservableCollection<Contact> Contacts { get; set; }
 
-        public Command LoadItemsCommand { get; }
+        public ICommand LoadItemsCommand { get; }
 
         public ICommand AddTapCommand { get; }
-
-        public ICommand EditItemCommand { get; }
-
-        public ICommand DeleteItemCommand { get; }
 
 
         public PhoneBookViewModel(IPhoneBookService dataService, IMyNavigationService navigationService)
@@ -56,17 +50,14 @@ namespace PhoneBook.ViewModels
 
             LoadItemsCommand = new Command(async () => await InitializeAsync());
             AddTapCommand = new Command(AddTabItem);
-            EditItemCommand = new Command<Contact>(EditItem);
-            DeleteItemCommand = new Command<Contact>(DeleteItem);
         }
 
-        
-
-        public override async Task InitializeAsync()
+        public override async Task InitializeAsync(object item = null)
         {
+            Title = CaptionResources.PhoneBook;
             IsBusy = true;
 
-            var items = await _dataService.GetIContactAsync(true);
+            var items = await _dataService.GetContactsAsync(true);
 
             Contacts = new ObservableCollection<Contact>(items);
             RaisePropertyChanged(() => Contacts);
@@ -74,52 +65,25 @@ namespace PhoneBook.ViewModels
             IsBusy = false;
         }
 
-        private void UsePhoneAsync(Contact contact)
+        protected override async void DeleteItemAction(object contact = null)
         {
-            var config = new ActionSheetConfig
-            {
-                Cancel = new ActionSheetOption("Cancel"),
-                Title = "Co chcesz zrobić?"
-            };
-
-            config.Add("Zadzwonić", new Action(async () =>
-            {
-                try
-                {
-                    PhoneDialer.Open(contact.TelephoneNumber);
-                }
-                catch (Exception e)
-                {
-                    UserDialogs.Instance.Alert("Your device does not support this feature");
-                }
-                
-            }));
-
-            config.Add("SMS", new Action(async () =>
-            {
-                await Sms.ComposeAsync(new SmsMessage
-                {
-                    Recipients = new List<string> { contact.TelephoneNumber },
-                    Body = ""
-                });
-            }));
-            var dialog = UserDialogs.Instance.ActionSheet(config);
-        }
-
-        private async void DeleteItem(Contact contact)
-        {
-            await _dataService.DeleteContactAsync(contact.Id);
+            await _dataService.DeleteContactAsync(((Contact)contact).Id);
             await InitializeAsync();
         }
 
-        private async void EditItem(Contact contact)
+        protected override async void EditAction(object contact = null)
         {
-            await _navigationService.PushAsync<UserContactDetailPage, UserContactDetailViewModel>(contact);
+            await _navigationService.PushAsync<UserContactDetailPage, UserContactDetailViewModel>(PageType.EditPage, contact);
         }
 
         private async void AddTabItem()
         {
-            await _navigationService.PushModalAsync<UserContactDetailPage, UserContactDetailViewModel>();
+            await _navigationService.PushAsync<UserContactDetailPage, UserContactDetailViewModel>(PageType.AddPage);
+        }
+
+        private async void SelectedAsync(Contact selectedContact)
+        {
+            await _navigationService.PushAsync<UserContactDetailPage, UserContactDetailViewModel>(PageType.DetailPage, selectedContact);
         }
     }
 }

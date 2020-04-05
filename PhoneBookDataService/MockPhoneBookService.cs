@@ -50,12 +50,22 @@ namespace PhoneBookDataService
 
         public async Task<Contact> GetContactAsync(string id)
         {
-            return await Task.FromResult(_contacts.FirstOrDefault(s => s.Id == id));
+            return await Task.FromResult(GetNewInstanceContact(_contacts.FirstOrDefault(s => s.Id == id)));
         }
 
-        public async Task<IEnumerable<Contact>> GetIContactAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<Contact>> GetContactsAsync(bool forceRefresh = false)
         {
-            return await Task.FromResult(_contacts);
+            return await Task.FromResult(_contacts.Select(GetNewInstanceContact));
+        }
+
+        private Contact GetNewInstanceContact(Contact contact)
+        {
+            return new Contact()
+            {
+                Id = contact.Id,
+                Name = contact.Name,
+                TelephoneNumber = contact.TelephoneNumber
+            };
         }
     }
 }

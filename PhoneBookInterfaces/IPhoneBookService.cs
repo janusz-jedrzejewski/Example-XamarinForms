@@ -10,6 +10,6 @@ namespace PhoneBookInterfaces
         Task<bool> UpdateContactAsync(Contact contact);
         Task<bool> DeleteContactAsync(string id);
         Task<Contact> GetContactAsync(string id);
-        Task<IEnumerable<Contact>> GetIContactAsync(bool forceRefresh = false);
+        Task<IEnumerable<Contact>> GetContactsAsync(bool forceRefresh = false);
     }
 }

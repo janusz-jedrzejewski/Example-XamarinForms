@@ -15,7 +15,7 @@ namespace PhoneBook.Views
         {
             base.OnAppearing();
 
-            if (BindingContext is BaseViewModel context) 
+            if (BindingContext is BaseViewModel context)
             {
                 await context.InitializeAsync();
             }

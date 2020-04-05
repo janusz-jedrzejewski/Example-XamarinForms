@@ -1,16 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="PhoneBook.Views.About"
-             Title="About">
-    <ContentPage.Content>
+<views:ContentPageXaml xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:views="clr-namespace:PhoneBook.Views;assembly=PhoneBook"
+                 mc:Ignorable="d"
+                 x:Class="PhoneBook.Views.About"
+                 xmlns:resources="clr-namespace:PhoneBook.Common.Resources;assembly=PhoneBook.Common">
+    <views:ContentPageXaml.Content>
         <StackLayout>
-            <Label Text="Przykładowa książka telefoniczna"
+            <Label Text="{x:Static resources:CaptionResources.ExamplePhoneBook}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>
-    </ContentPage.Content>
-</ContentPage>
+    </views:ContentPageXaml.Content>
+</views:ContentPageXaml>

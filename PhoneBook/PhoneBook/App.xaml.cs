@@ -1,9 +1,13 @@
 ﻿using Autofac;
+using FluentValidation;
+using PhoneBook.Extensions;
+using PhoneBook.Factories;
 using PhoneBook.Services;
 using PhoneBook.ViewModels;
 using PhoneBook.Views;
 using PhoneBookDataService;
 using PhoneBookInterfaces;
+using PhoneBookModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -27,7 +31,6 @@ namespace PhoneBook
             MainPage = shellPage;
 
             Navigation = MainPage.Navigation;
-            ;
         }
 
         protected override void OnStart()
@@ -47,24 +50,19 @@ namespace PhoneBook
             var builder = new ContainerBuilder();
 
             builder.RegisterType<ShellPage>().SingleInstance();
-            builder.RegisterType<PhoneBookViewModel>();
+            
+            builder.RegisterViewViewModel<PhoneBookPage, PhoneBookViewModel>();
+            builder.RegisterViewViewModel<About, AboutViewModel>();
 
-            builder
-                .RegisterType<PhoneBookPage>()
-                .OnActivating(e =>
-                {
-                    var dep = e.Context.Resolve<PhoneBookViewModel>();
-                    e.Instance.SetDataContext(dep);
-                }).As<IShellTabPage>();
-            builder.RegisterType<About>().As<IShellTabPage>();
-
-
-            builder.RegisterType<UserContactDetailViewModel>();
+            builder.RegisterViewModel<UserContactDetailViewModel>();
             builder.RegisterType<UserContactDetailPage>();
 
             builder.RegisterType<MyNavigationService>().As<IMyNavigationService>().SingleInstance();
             builder.RegisterType<MockPhoneBookService>().As<IPhoneBookService>().SingleInstance();
 
+            builder.RegisterType<FluentValidatorFactory>().As<IValidatorFactory>();
+            builder.RegisterType<FluentValidationService>().As<IValidationService>();
+            builder.RegisterValidator<UserContactValidation>();
 
             _containerBuilder = builder.Build();
         }

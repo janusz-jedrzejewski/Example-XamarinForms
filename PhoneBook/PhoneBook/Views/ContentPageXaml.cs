@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using PhoneBook.ViewModels;
+using Xamarin.Forms;
 
 namespace PhoneBook.Views
 {
@@ -6,11 +7,13 @@ namespace PhoneBook.Views
     {
         public object Context { get; set; }
 
-        public void SetDataContext<T>(T viewModel)
+        public void SetDataContext<T>(T viewModel) where T : BaseViewModel
         {
             BindingContext = viewModel;
             Context = viewModel;
 
+            SetBinding(TitleProperty, new Binding(nameof(BaseViewModel.Title)));
+            
             OnPropertyChanged("BindingContext");
         }
     }

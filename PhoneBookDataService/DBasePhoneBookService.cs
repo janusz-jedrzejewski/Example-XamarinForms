@@ -32,7 +32,7 @@ namespace PhoneBookDataService
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Contact>> GetIContactAsync(bool forceRefresh = false)
+        public Task<IEnumerable<Contact>> GetContactsAsync(bool forceRefresh = false)
         {
             throw new NotImplementedException();
         }

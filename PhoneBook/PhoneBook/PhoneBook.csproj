@@ -11,6 +11,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="MainPage.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Acr.UserDialogs" Version="7.1.0.442" />
     <PackageReference Include="Autofac" Version="5.1.2" />
     <PackageReference Include="FluentValidation" Version="8.6.2" />
@@ -20,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\PhoneBook.Common\PhoneBook.Common.csproj" />
     <ProjectReference Include="..\..\PhoneBookDataService\PhoneBookDataService.csproj" />
     <ProjectReference Include="..\..\PhoneBookInterfaces\PhoneBookInterfaces.csproj" />
     <ProjectReference Include="..\..\PhoneBookModels\PhoneBookModels.csproj" />
