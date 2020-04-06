@@ -6,8 +6,12 @@
                  xmlns:views="clr-namespace:PhoneBook.Views;assembly=PhoneBook"
                  xmlns:resources="clr-namespace:PhoneBook.Common.Resources;assembly=PhoneBook.Common"
                  xmlns:customControls="clr-namespace:PhoneBook.CustomControls;assembly=PhoneBook"
+                 xmlns:converters="clr-namespace:PhoneBook.Converters;assembly=PhoneBook"
                  mc:Ignorable="d"
                  x:Class="PhoneBook.Views.UserContactDetailPage">
+    <views:ContentPageXaml.Resources>
+        <converters:InverseBooleanConverter x:Key="inverseBooleanConverter" />
+    </views:ContentPageXaml.Resources>
     <views:ContentPageXaml.ToolbarItems>
         <customControls:BindableToolbarItem Text="{x:Static resources:CaptionResources.Edit}" Command="{Binding EditItemCommand}" CommandParameter="{Binding Contact}" IsVisible="{Binding IsEditingButtonsTabVisible}"/>
         <customControls:BindableToolbarItem Text="{x:Static resources:CaptionResources.Delete}" Command="{Binding DeleteItemCommand}" CommandParameter="{Binding Contact}" IsVisible="{Binding IsEditingButtonsTabVisible}"/>
@@ -15,9 +19,9 @@
 
     <StackLayout Spacing="20" Padding="15">
         <Label Text="{x:Static resources:CaptionResources.NameAndLastName}" FontSize="Medium" />
-        <Entry Text="{Binding Contact.Name}" FontSize="Small" IsEnabled="{Binding IsButtonSaveVisible}"/>
+        <Entry Text="{Binding Contact.Name}" FontSize="Small" IsReadOnly="{Binding IsButtonSaveVisible, Converter={StaticResource inverseBooleanConverter}}"/>
         <Label Text="{x:Static resources:CaptionResources.TelephoneNumber}" FontSize="Medium" />
-        <Entry Text="{Binding Contact.TelephoneNumber}" Keyboard="Telephone" FontSize="Small" IsEnabled="{Binding IsButtonSaveVisible}"/>
+        <Entry Text="{Binding Contact.TelephoneNumber}" Keyboard="Telephone" FontSize="Small" IsReadOnly="{Binding IsButtonSaveVisible, Converter={StaticResource inverseBooleanConverter}}"/>
         <Button Text="{x:Static resources:CaptionResources.Save}" Command="{Binding SaveCommand}" CommandParameter="{Binding Contact}" IsVisible="{Binding IsButtonSaveVisible}"/>
         <StackLayout VerticalOptions="FillAndExpand" IsVisible="{Binding IsPhoneDialerSmsButtonsVisible}">
             <Button Text="{x:Static resources:CaptionResources.Call}" Command="{Binding CallCommand}"/>
